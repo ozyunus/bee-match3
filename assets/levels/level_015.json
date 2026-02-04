@@ -1,0 +1,29 @@
+{
+  "level_id": 15,
+  "difficulty_tag": "medium",
+  "grid_size": "8x8",
+  "moves_allowed": 22,
+  "objectives": [
+    {
+      "type": "collect",
+      "animal_type": "rabbit",
+      "target_count": 35
+    },
+    {
+      "type": "break_blockers",
+      "blocker_type": "ice",
+      "target_count": 8
+    }
+  ],
+  "initial_blockers": [
+    {"x": 1, "y": 1, "type": "ice"},
+    {"x": 6, "y": 1, "type": "ice"},
+    {"x": 3, "y": 3, "type": "ice"},
+    {"x": 4, "y": 3, "type": "ice"},
+    {"x": 2, "y": 5, "type": "ice"},
+    {"x": 5, "y": 5, "type": "ice"},
+    {"x": 1, "y": 6, "type": "ice"},
+    {"x": 6, "y": 6, "type": "ice"}
+  ],
+  "ingredients": []
+}

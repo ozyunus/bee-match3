@@ -1,0 +1,34 @@
+{
+  "level_id": 25,
+  "difficulty_tag": "hard",
+  "grid_size": "8x8",
+  "moves_allowed": 18,
+  "objectives": [
+    {
+      "type": "collect",
+      "animal_type": "cat",
+      "target_count": 40
+    },
+    {
+      "type": "drop_ingredients",
+      "target_count": 3
+    }
+  ],
+  "initial_blockers": [
+    {"x": 0, "y": 2, "type": "box"},
+    {"x": 7, "y": 2, "type": "box"},
+    {"x": 2, "y": 3, "type": "ice"},
+    {"x": 5, "y": 3, "type": "ice"},
+    {"x": 3, "y": 4, "type": "ice"},
+    {"x": 4, "y": 4, "type": "ice"},
+    {"x": 1, "y": 5, "type": "box"},
+    {"x": 6, "y": 5, "type": "box"},
+    {"x": 2, "y": 6, "type": "ice"},
+    {"x": 5, "y": 6, "type": "ice"}
+  ],
+  "ingredients": [
+    {"x": 2, "type": "nut"},
+    {"x": 4, "type": "nut"},
+    {"x": 6, "type": "nut"}
+  ]
+}

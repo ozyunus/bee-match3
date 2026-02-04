@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Idle Bee Match - Splash Screen</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f506",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#23220f",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display antialiased text-[#1c1c0d] bg-background-light dark:bg-background-dark h-screen w-full overflow-hidden selection:bg-primary selection:text-black">
+<!-- Main Container -->
+<div class="relative flex h-full w-full flex-col items-center justify-between">
+<!-- Background Image Layer -->
+<div class="absolute inset-0 z-0 w-full h-full">
+<div class="w-full h-full bg-cover bg-center bg-no-repeat opacity-40" data-alt="Soft blurred sunny garden background with pastel flowers and blue sky" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxJFKJ13lWTFPly3EumMpkP6I70IAuIwjO1QMfnEwF-YQp2UwZx7XKEhEbaI_R4x-pREuk2iIoi9OkCV9OBJ7e8yO1u9vO3Bd65Zok1_h6bayGz-ig40wlPuRQNJVWx_xo-fwmpIHvJ4nDkCPxycid1ILHjvGqT1s8qJBvQjtvtCBpXx86IzaV4r2fZx6CVIbdIgeZW2k2TwFtmSWV1gpxRF4hcTX0Kk2OIxRKBs8zF5GsjDdFLujRvsphwv5Q_zec4fvwB0O9r8dE');">
+</div>
+<!-- Gradient Overlay for readability -->
+<div class="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/40 dark:from-black/60 dark:to-black/40"></div>
+</div>
+<!-- Content Layer -->
+<div class="relative z-10 flex flex-col items-center justify-between w-full h-full p-6 pt-12 pb-8 safe-area-inset-bottom">
+<!-- Logo Section -->
+<div class="flex flex-col items-center gap-2 mt-8 animate-fade-in-down">
+<div class="px-6 py-3 bg-white/80 dark:bg-black/40 backdrop-blur-sm rounded-full shadow-sm border border-white/50">
+<h1 class="text-[#1c1c0d] dark:text-white tracking-tight text-4xl md:text-5xl font-black leading-tight text-center drop-shadow-sm">
+                        Idle Bee <span class="text-[#dcb604]">Match</span>
+</h1>
+</div>
+</div>
+<!-- Hero Character -->
+<div class="flex-1 flex items-center justify-center w-full max-w-sm my-4">
+<div class="relative w-full aspect-square flex items-center justify-center">
+<!-- Glow effect behind the bee -->
+<div class="absolute inset-0 bg-primary/30 blur-3xl rounded-full transform scale-75"></div>
+<!-- Bee Character Image -->
+<div class="relative w-64 h-64 md:w-80 md:h-80 bg-contain bg-center bg-no-repeat drop-shadow-xl" data-alt="Cute round cartoon bumblebee character floating in the air" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYzHwQ4FN2RHM1Uqb5RGsx5sgp8MrkZDCUU_qMgNuQGzk0h_gkZcDs-4ynLptDnT33EWIUFPb-j52DdTniPNxy7jnIBLiG6gu1_UvL_Y9Db6HPMSPXUmgWTrCqh49PCKTyhHaCNsD4RBre79_5zRVrECID8pMhkFSruDFkRtp9SXh2QYWmVUrgUMRx5rm3mWngzqDkHz7r6jUdHzRIzHBthDt64ZCUmeLj-rROZ2LcXNIeIO8MrlFs4Y-kTCQk4Kzr3PbolZPvAj5F');">
+</div>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="flex flex-col items-center gap-6 w-full mb-8">
+<!-- Tap to Start Button -->
+<button class="group relative flex min-w-[240px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-16 px-8 bg-primary shadow-[0_6px_0_0_#dcb604] hover:translate-y-[2px] hover:shadow-[0_4px_0_0_#dcb604] active:translate-y-[6px] active:shadow-none transition-all duration-150">
+<span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
+<span class="material-symbols-outlined mr-2 text-2xl font-bold">play_arrow</span>
+<span class="text-[#1c1c0d] text-lg font-bold leading-normal tracking-wider">TAP TO START</span>
+</button>
+<!-- Meta Info -->
+<div class="flex flex-col items-center gap-1">
+<p class="text-[#5c5b2a] dark:text-[#a0a090] text-xs font-medium leading-normal text-center bg-white/50 dark:bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
+                        v1.0.2 - ID: 8829
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

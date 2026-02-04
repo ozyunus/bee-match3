@@ -1,0 +1,15 @@
+{
+  "level_id": 1,
+  "difficulty_tag": "easy",
+  "grid_size": "8x8",
+  "moves_allowed": 30,
+  "objectives": [
+    {
+      "type": "collect",
+      "animal_type": "bee",
+      "target_count": 20
+    }
+  ],
+  "initial_blockers": [],
+  "ingredients": []
+}

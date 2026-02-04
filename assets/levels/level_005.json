@@ -1,0 +1,26 @@
+{
+  "level_id": 5,
+  "difficulty_tag": "easy",
+  "grid_size": "8x8",
+  "moves_allowed": 28,
+  "objectives": [
+    {
+      "type": "collect",
+      "animal_type": "bee",
+      "target_count": 30
+    },
+    {
+      "type": "break_blockers",
+      "blocker_type": "box",
+      "target_count": 5
+    }
+  ],
+  "initial_blockers": [
+    {"x": 2, "y": 2, "type": "box"},
+    {"x": 5, "y": 2, "type": "box"},
+    {"x": 3, "y": 5, "type": "box"},
+    {"x": 4, "y": 5, "type": "box"},
+    {"x": 6, "y": 6, "type": "box"}
+  ],
+  "ingredients": []
+}

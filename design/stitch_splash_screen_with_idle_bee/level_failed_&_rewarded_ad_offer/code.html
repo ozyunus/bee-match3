@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Level Failed - Match 3 Game</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Spline Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f506",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#23220f",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0, 0, 0, 0.08)',
+                        'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom animation for the pulse effect on the primary button */
+        @keyframes subtle-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .animate-pulse-slow {
+            animation: subtle-pulse 2s infinite ease-in-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#1c1c0d] dark:text-white font-display min-h-screen flex flex-col overflow-hidden relative selection:bg-primary selection:text-black">
+<!-- Background Decoration (Simulating game board blur) -->
+<div class="absolute inset-0 opacity-5 pointer-events-none z-0" style="background-image: radial-gradient(#1c1c0d 1px, transparent 1px); background-size: 24px 24px;">
+</div>
+<!-- Top Bar: Context (Lives) -->
+<div class="relative z-10 w-full p-6 flex justify-between items-center">
+<!-- Close Button (Ghost) -->
+<button class="flex items-center justify-center text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors w-10 h-10 rounded-full">
+<span class="material-symbols-outlined" style="font-size: 28px;">close</span>
+</button>
+<!-- Lives Counter -->
+<div class="flex items-center gap-2 bg-white dark:bg-black/20 backdrop-blur-sm pl-3 pr-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-white/10">
+<span class="material-symbols-outlined text-rose-500" style="font-size: 20px;">favorite</span>
+<span class="text-sm font-bold tracking-wide">0 Lives</span>
+</div>
+</div>
+<!-- Main Content Area: Centered Modal -->
+<div class="relative z-10 flex-1 flex flex-col items-center justify-center p-6 w-full max-w-md mx-auto">
+<!-- Modal Card -->
+<div class="bg-white dark:bg-[#2f2e1a] w-full rounded-xl shadow-soft p-6 flex flex-col items-center relative overflow-hidden">
+<!-- Decorative colored top glow -->
+<div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none"></div>
+<!-- Mascot Illustration -->
+<div class="relative mt-2 mb-6 group">
+<div class="w-48 h-48 rounded-full bg-primary/20 dark:bg-primary/10 flex items-center justify-center overflow-hidden relative">
+<!-- Abstract representation of mascot if image fails, otherwise image covers it -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A cute sad panda bear sitting with an empty berry basket looking disappointed but hopeful" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBk-PhwbHlff3RuqhFS2cO8SakzsAGcQ-3KBVZEFaARZEpXUYkQEx3rS8YDY3mtI4g90agKdXtgtXYKjl3o87gbuuJeHkkHKWCiOdelNLgxx4aW8c1UNDnHWZbooVPCjWJl-y9ALKglEdX93HEMdVLVGbPVWGgA-WO-jgOqSLro8ipxYkC0lcs0gE2uhEW9DFrShONDwbm3LoxyjVKzEojj0sD_zE1KM9LLarTlmvRUSXrVgpXGhKkkIrhJfI2MLvtTeAdtiD50M8od');">
+</div>
+<!-- Overlay to ensure text legibility if needed, though mostly for style here -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+</div>
+<!-- Broken Heart Floating Icon -->
+<div class="absolute -top-2 -right-2 bg-white dark:bg-[#3d3b20] p-2 rounded-full shadow-md rotate-12">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-300 block" style="font-size: 32px;">heart_broken</span>
+</div>
+</div>
+<!-- Headline -->
+<h1 class="text-3xl font-bold text-center leading-tight mb-2 tracking-tight">Out of Moves!</h1>
+<p class="text-gray-500 dark:text-gray-300 text-center text-base mb-8 px-4 font-medium">Don't give up! You're so close to clearing the level.</p>
+<!-- Progress Section -->
+<div class="w-full bg-background-light dark:bg-black/20 rounded-lg p-5 mb-8 border border-gray-100 dark:border-white/5">
+<div class="flex justify-between items-end mb-3">
+<div class="flex flex-col">
+<span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-400 mb-1">Goal</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-rose-500" style="font-size: 20px;">eco</span>
+<span class="text-lg font-bold">12/15 Berries</span>
+</div>
+</div>
+<span class="text-primary font-bold text-lg">80%</span>
+</div>
+<!-- Progress Bar -->
+<div class="h-4 w-full bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden shadow-inner-soft">
+<div class="h-full bg-primary rounded-full relative" style="width: 80%;">
+<!-- Shine effect on bar -->
+<div class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-b from-white/30 to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-3">
+<!-- Primary Action: Watch Ad -->
+<button class="group relative w-full h-14 bg-primary text-black rounded-full flex items-center justify-center gap-3 shadow-[0_4px_0_#d4d000] active:shadow-none active:translate-y-[4px] transition-all overflow-hidden animate-pulse-slow">
+<!-- Shine animation container -->
+<div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent z-10" style="content: ''; transform: skewX(-20deg);"></div>
+<span class="material-symbols-outlined z-20" style="font-size: 28px;">videocam</span>
+<div class="flex flex-col items-start leading-none z-20">
+<span class="text-sm font-semibold opacity-80 uppercase tracking-wide text-[10px]">Watch Ad</span>
+<span class="text-lg font-bold">Get +5 Moves</span>
+</div>
+</button>
+<!-- Secondary Action: Try Again -->
+<button class="mt-2 w-full h-12 flex items-center justify-center gap-2 text-gray-500 dark:text-gray-400 font-bold hover:bg-gray-100 dark:hover:bg-white/5 rounded-full transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">replay</span>
+                    Try Again
+                </button>
+</div>
+</div>
+</div>
+<!-- CSS for Shimmer Animation -->
+<style>
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</body></html>
