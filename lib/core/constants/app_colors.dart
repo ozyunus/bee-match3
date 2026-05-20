@@ -13,6 +13,7 @@ class AppColors {
   static const Color backgroundLight = Color(0xFFF8F8F5); // Off-white
   static const Color backgroundDark = Color(0xFF23220F); // Dark Brown
   static const Color neutralDark = Color(0xFF1C1C0D); // Dark charcoal
+  static const Color fruitTileBorder = Color(0xFFFFA726); // Warm orange
 
   // Surface colors
   static const Color surface = Colors.white;
@@ -24,6 +25,23 @@ class AppColors {
   static const Color catColor = Color(0xFF87CEEB); // Sky Blue
   static const Color duckColor = Color(0xFF90EE90); // Light Green
   static const Color bearColor = Color(0xFFD2691E); // Chocolate
+  static const Color dogColor = Color(0xFFDEB887); // Burlywood
+  static const Color frogColor = Color(0xFF32CD32); // Lime Green
+  static const Color foxColor = Color(0xFFFF6347); // Tomato
+  static const Color owlColor = Color(0xFF8B6914); // Dark Goldenrod
+  static const Color pandaColor = Color(0xFF708090); // Slate Gray
+  static const Color lionColor = Color(0xFFDAA520); // Goldenrod
+  static const Color appleColor = Color(0xFFFF4F4F); // Apple Red
+  static const Color orangeColor = Color(0xFFFF8F00); // Citrus Orange
+  static const Color berryColor = Color(0xFF8E24AA); // Berry Purple
+  static const Color grapeColor = Color(0xFF6A1B9A); // Deep Grape
+  static const Color lemonColor = Color(0xFFFFEE58); // Lemon Yellow
+  static const Color hintGlow = Color(0xFF00FF86); // Neon green glow
+  static const Color appleBg = Color(0xFFFCE7E7);
+  static const Color orangeBg = Color(0xFFFFF3E0);
+  static const Color berryBg = Color(0xFFF4E1FF);
+  static const Color grapeBg = Color(0xFFEEE5FD);
+  static const Color lemonBg = Color(0xFFFFFEF0);
 
   // UI colors
   static const Color success = Color(0xFF4CAF50);

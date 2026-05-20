@@ -27,7 +27,7 @@ class GameConstants {
   static const int maxSplashDuration = 7000; // 7 seconds
 
   // Level settings
-  static const int totalLevels = 30;
+  static const int totalLevels = 40;
   static const int easyLevelsEnd = 10;
   static const int mediumLevelsEnd = 20;
 
@@ -49,4 +49,12 @@ class GameConstants {
   // Offline queue settings
   static const int maxQueuedEvents = 100;
   static const int eventExpirationHours = 48;
+
+  // Ads
+  static const bool rewardedUndoEnabled = true;
+
+  // Spawn ratios
+  static const double earlyAnimalRatio = 0.8;
+  static const double lateAnimalRatio = 0.5;
+  static const double beeShareOfAnimals = 0.65;
 }

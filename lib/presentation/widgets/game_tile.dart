@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/constants/app_colors.dart';
 import '../../data/models/animal_type.dart';
 
 /// Optimized individual tile widget with RepaintBoundary
@@ -12,6 +13,7 @@ class GameTile extends StatelessWidget {
     required this.isSpecialMatch,
     required this.onTap,
     this.onSwipe,
+    this.isHinted = false,
   });
 
   final AnimalType? animal;
@@ -20,6 +22,7 @@ class GameTile extends StatelessWidget {
   final bool isSpecialMatch;
   final VoidCallback onTap;
   final Function(String direction)? onSwipe;
+  final bool isHinted;
 
   @override
   Widget build(BuildContext context) {
@@ -45,46 +48,41 @@ class GameTile extends StatelessWidget {
         } : null,
         behavior: HitTestBehavior.opaque,
         child: AnimatedScale(
-        scale: isMatched ? 0.0 : 1.0,
-        duration: Duration(milliseconds: isSpecialMatch ? 400 : 200),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          decoration: BoxDecoration(
-            color: animalType.color,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: isSelected
-                  ? Colors.white
-                  : isSpecialMatch
-                      ? Colors.yellow.withValues(alpha: 0.8)
-                      : Colors.white.withValues(alpha: 0.3),
-              width: isSelected ? 3 : isSpecialMatch ? 2 : 1,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: isSelected
-                    ? Colors.white.withValues(alpha: 0.8)
-                    : isSpecialMatch
-                        ? Colors.yellow.withValues(alpha: 0.6)
-                        : animalType.color.withValues(alpha: 0.4),
-                offset: const Offset(0, 2),
-                blurRadius: isSelected ? 8 : isSpecialMatch ? 12 : 4,
+          scale: isMatched ? 0.0 : 1.0,
+          duration: Duration(milliseconds: isSpecialMatch ? 400 : 200),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              if (isHinted)
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.hintGlow.withValues(alpha: 0.35),
+                        blurRadius: 14,
+                        spreadRadius: 1,
+                      ),
+                    ],
+                  ),
+                ),
+              AnimatedScale(
+                scale: isSelected ? 1.02 : isSpecialMatch ? 1.06 : 1.0,
+                duration: Duration(milliseconds: isSpecialMatch ? 400 : 150),
+                child: Image.asset(
+                  animalType.assetPath,
+                  fit: BoxFit.cover,
+                  filterQuality: FilterQuality.high,
+                  errorBuilder: (context, error, stackTrace) => Text(
+                    animalType.emoji,
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                ),
               ),
             ],
           ),
-          child: Center(
-            child: AnimatedScale(
-              scale: isSelected ? 1.2 : isSpecialMatch ? 1.3 : 1.0,
-              duration: Duration(milliseconds: isSpecialMatch ? 400 : 150),
-              child: Text(
-                animalType.emoji,
-                style: const TextStyle(fontSize: 24),
-              ),
-            ),
-          ),
         ),
       ),
-    ),
     );
   }
 }

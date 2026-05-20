@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math_64.dart' show Vector3;
+
 import '../../core/constants/app_colors.dart';
 
 /// Star rating display widget (based on design spec)
@@ -72,7 +74,7 @@ class _StarRatingState extends State<StarRating>
             return Transform(
               alignment: Alignment.center,
               transform: Matrix4.identity()
-                ..scale(scale)
+                ..scaleByVector3(Vector3(scale, scale, scale))
                 ..rotateZ(rotation),
               child: _StarIcon(
                 isEarned: isEarned,

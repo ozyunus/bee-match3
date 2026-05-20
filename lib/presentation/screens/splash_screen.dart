@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/game_constants.dart';
 import '../../core/router/app_router.dart';
+import '../../services/onboarding_service.dart';
+import '../../services/user_service.dart';
 import '../widgets/primary_button.dart';
 
 /// Splash screen with idle bee animation (based on design spec)
@@ -23,6 +25,8 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> _glowAnimation;
 
   Timer? _autoNavigateTimer;
+  bool _isNavigating = false;
+  bool _hasNavigated = false;
 
   @override
   void initState() {
@@ -60,14 +64,29 @@ class _SplashScreenState extends State<SplashScreen>
   void _startAutoNavigateTimer() {
     _autoNavigateTimer = Timer(
       const Duration(milliseconds: GameConstants.maxSplashDuration),
-      _navigateToGame,
+      _handleSplashCompletion,
     );
   }
 
-  void _navigateToGame() {
+  Future<void> _handleSplashCompletion() async {
+    if (_isNavigating) {
+      return;
+    }
+
+    _isNavigating = true;
     _autoNavigateTimer?.cancel();
+
+    await OnboardingService.launchFlowIfAvailable();
+
+    _navigateToGame();
+  }
+
+  void _navigateToGame() {
+    if (_hasNavigated) return;
+
+    _hasNavigated = true;
     if (mounted) {
-      context.go(AppRoutes.game, extra: 1);
+      context.go(AppRoutes.game, extra: UserService.maxUnlockedLevel);
     }
   }
 
@@ -99,6 +118,55 @@ class _SplashScreenState extends State<SplashScreen>
           child: SafeArea(
             child: Column(
               children: [
+                // Top bar with settings
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Nickname
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.8),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.person, size: 18, color: AppColors.textSecondary),
+                            const SizedBox(width: 6),
+                            Text(
+                              UserService.nickname,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.textPrimary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Settings button
+                      Material(
+                        color: Colors.white.withValues(alpha: 0.8),
+                        borderRadius: BorderRadius.circular(12),
+                        child: InkWell(
+                          onTap: () async {
+                            _autoNavigateTimer?.cancel();
+                            await context.push(AppRoutes.settings);
+                            if (mounted) setState(() {});
+                          },
+                          borderRadius: BorderRadius.circular(12),
+                          child: const Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Icon(Icons.settings_rounded, size: 22, color: AppColors.textSecondary),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 const Spacer(flex: 1),
                 // Logo
                 _buildLogo(),
@@ -106,13 +174,23 @@ class _SplashScreenState extends State<SplashScreen>
                 // Animated Bee
                 _buildAnimatedBee(),
                 const Spacer(flex: 2),
+                // Level info
+                Text(
+                  'Bölüm ${UserService.maxUnlockedLevel}',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textPrimary.withValues(alpha: 0.7),
+                  ),
+                ),
+                const SizedBox(height: 12),
                 // Start Button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 48),
                   child: PrimaryButton(
-                    text: 'TAP TO START',
+                    text: 'OYNA',
                     icon: Icons.play_arrow_rounded,
-                    onPressed: _navigateToGame,
+                    onPressed: () => _handleSplashCompletion(),
                     width: double.infinity,
                   ),
                 ),
@@ -187,7 +265,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ],
               ),
             ),
-            // Bee character (placeholder with emoji)
+            // Bee mascot sprite
             Transform.translate(
               offset: Offset(0, _beeFloatAnimation.value),
               child: Transform.rotate(
@@ -210,10 +288,13 @@ class _SplashScreenState extends State<SplashScreen>
                       ),
                     ],
                   ),
-                  child: const Center(
-                    child: Text(
-                      '🐝',
-                      style: TextStyle(fontSize: 80),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(14),
+                      child: Image.asset(
+                        'assets/images/sprite/bee.png',
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 ),

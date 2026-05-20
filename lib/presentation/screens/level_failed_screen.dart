@@ -301,7 +301,12 @@ class _LevelFailedScreenState extends State<LevelFailedScreen>
             children: [
               Row(
                 children: [
-                  const Text('🐝', style: TextStyle(fontSize: 18)),
+                  Image.asset(
+                    'assets/images/sprite/bee.png',
+                    width: 18,
+                    height: 18,
+                    fit: BoxFit.contain,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     widget.objectiveLabel,

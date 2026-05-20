@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "314311772834",
+    "project_id": "beematch-a9983",
+    "storage_bucket": "beematch-a9983.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314311772834:android:c247635253419a84b725fb",
+        "android_client_info": {
+          "package_name": "com.beematch.bee_match3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcPzKAfv1dih9AbBWd8BrFPV4oCzXfnNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

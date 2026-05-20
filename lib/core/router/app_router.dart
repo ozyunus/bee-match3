@@ -4,6 +4,7 @@ import '../../presentation/screens/splash_screen.dart';
 import '../../presentation/screens/game_screen.dart';
 import '../../presentation/screens/level_complete_screen.dart';
 import '../../presentation/screens/level_failed_screen.dart';
+import '../../presentation/screens/settings_screen.dart';
 
 /// Route names
 class AppRoutes {
@@ -13,6 +14,7 @@ class AppRoutes {
   static const String game = '/game';
   static const String levelComplete = '/level-complete';
   static const String levelFailed = '/level-failed';
+  static const String settings = '/settings';
 }
 
 /// App router configuration
@@ -61,6 +63,11 @@ class AppRouter {
             objectiveLabel: data['objectiveLabel'] as String? ?? 'Collect Bees',
           );
         },
+      ),
+      GoRoute(
+        path: AppRoutes.settings,
+        name: 'settings',
+        builder: (context, state) => const SettingsScreen(),
       ),
     ],
     errorBuilder: (context, state) => Scaffold(

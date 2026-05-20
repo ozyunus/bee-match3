@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/router/app_router.dart';
+import '../../services/user_service.dart';
 import '../widgets/primary_button.dart';
 import '../widgets/star_rating.dart';
 
@@ -37,6 +38,9 @@ class _LevelCompleteScreenState extends State<LevelCompleteScreen>
   void initState() {
     super.initState();
     _initAnimations();
+    // Save score and unlock next level
+    UserService.saveLevelScore(widget.levelId, widget.score, widget.starsEarned);
+    UserService.unlockNextLevel(widget.levelId);
   }
 
   void _initAnimations() {
@@ -202,8 +206,14 @@ class _LevelCompleteScreenState extends State<LevelCompleteScreen>
               ),
             ],
           ),
-          child: const Center(
-            child: Text('🐝', style: TextStyle(fontSize: 60)),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Image.asset(
+                'assets/images/sprite/bee.png',
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
         ),
         // Celebration emoji
